@@ -1,0 +1,18 @@
+sudo: required
+services: docker
+language: node_js
+node_js:
+- 8.9.4
+env:
+- SUMO_AWS_LAMBDA_VERSION="1.2.7"
+script:
+- "./build.sh $SUMO_AWS_LAMBDA_VERSION"
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: VA2TDNX2cDKhUtVVZ+BV28i2Y+ROdLK6G8ujTOPGl5EeiIh5eCPRqcnRW+VQKmzQL741O8/QRipEqt7EGs2ajbYAl5jPRgASBoYf3hJzkpiEA2rjvCzs82yT/VLuk0FIwOnNEGCvu5PjBfRfMT451p3QCAiDvDY12W3kfDd2362vLnF34pfL8GvZO1oU8zywhXbVB85CxjlNI4XKmVv579NPUSBMiD62mPtXFWH5R++d9swEY38e/a0Cus6+9CqUj/PvmyAZW34TPM9AY93KHzjuJBtd0iyvfwnMT13w1LnjnHF4TvkhkLnBQV0+X6eZlclBrztCcX4Nile65ZKdoqQ3cdoxbwpPkiOl+w/0a4g74u7PQULw9G0bGFX25ZPbFjeQWG0a+RH41EcLQK6FPtiyJpEPBKm6JsyFmu71GFRcX+Y5ls05SgsQT9zVGNeScpO+mGu4PSOHZDe3c1a77xhc5uApQxm1u9BON3JAI1i/3P1WjAko3Zxlh0cS4gf55EzUGP234ti1ZxW24Un7tgHGjgGIgVVmBAI5IWG0r9KFZ2ClJoevThW85pZtyDEbUOLCcSfSUYHn28W4Om8VLEoAILgivLMYKkfFPovrOX/C0EaQNUjgfyY/PENcjXdAj8c/CTLVmi+DXqw8I3RRhMZWF1NElatk6m8xTfLDmp0=
+  file: build/cloudwatchlogs-with-dlq.zip
+  on:
+    tags: true
+    repo: bsycorp/sumologic-aws-lambda-cloudwatchlogs

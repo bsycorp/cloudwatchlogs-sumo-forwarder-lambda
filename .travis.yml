@@ -2,15 +2,16 @@ sudo: required
 services: docker
 language: node_js
 node_js:
-  - 8.9.4
+- 8.9.4
 env:
-  - SUMO_AWS_LAMBDA_VERSION="1.2.7"
+- SUMO_AWS_LAMBDA_VERSION="1.2.7"
 script:
-  - ./build.sh $
-provider: releases
-  # api_key:
-  #   secure: r1e70+3OBtLeyT8kAexDLIFUZfpLzHO55/sFtIlC5XJEWytleFYCTtBgy05dRT3PpDlWb5FGoef7MAV6IK9kQ7AgaQIgS2TnfqTHqayiDSmqY8ia8zOf8Py+83p69RgLM4QWO9uFqKC2F0KyTpmH8UMCDw5dRNHlr6tmocGXvi8iJE5SIEM3YQEO98SUEvOdzNvvEyZputzoWwusOSVqZlJaJdcG9+sEpk77SRPuC3TDtQ5UiVBX8Qejf/+k499IeilZhob6WnuSegWcIWWVMwUpNSI//Mr/f2rwcltS3AJGZ5ytvE7iq2Hm9uDn+GWIyFjKFXeoZIatg23hUuVBYZJ5EuS17Hm2wcTLc3UmzIqYS2HUCOINx1/Xji6DzZDMQIRlGwZhLpTEbzDtEH3eWKSOZTQhbzunGQ5sO4MORscM78k6corsp8B+xL0gk7POLzIwdb7lRnoGhUriHhEgODm0Rdh9BWgk6PDJ77pZ4IXC0BjRRT2c6JGp191fciFQ46dkiqc4EPyakM785cWpK/nvheotLXj+57EcyZ4puqaVhZ8csfsernGt4tWoRNxmeVleBjVQDg3I4znA0ZroLnuhXJ9xoYsaTZbQcECNX9KLdVO700QKwrNRLW2fjnbZmeMs8d+Fk/0RB+AF2rpAtLrAy5bw5rVczq2I35fHxWM=
+- "./build.sh $SUMO_AWS_LAMBDA_VERSION"
+deploy:
+  provider: releases
   skip_cleanup: true
+  api_key:
+    secure: VA2TDNX2cDKhUtVVZ+BV28i2Y+ROdLK6G8ujTOPGl5EeiIh5eCPRqcnRW+VQKmzQL741O8/QRipEqt7EGs2ajbYAl5jPRgASBoYf3hJzkpiEA2rjvCzs82yT/VLuk0FIwOnNEGCvu5PjBfRfMT451p3QCAiDvDY12W3kfDd2362vLnF34pfL8GvZO1oU8zywhXbVB85CxjlNI4XKmVv579NPUSBMiD62mPtXFWH5R++d9swEY38e/a0Cus6+9CqUj/PvmyAZW34TPM9AY93KHzjuJBtd0iyvfwnMT13w1LnjnHF4TvkhkLnBQV0+X6eZlclBrztCcX4Nile65ZKdoqQ3cdoxbwpPkiOl+w/0a4g74u7PQULw9G0bGFX25ZPbFjeQWG0a+RH41EcLQK6FPtiyJpEPBKm6JsyFmu71GFRcX+Y5ls05SgsQT9zVGNeScpO+mGu4PSOHZDe3c1a77xhc5uApQxm1u9BON3JAI1i/3P1WjAko3Zxlh0cS4gf55EzUGP234ti1ZxW24Un7tgHGjgGIgVVmBAI5IWG0r9KFZ2ClJoevThW85pZtyDEbUOLCcSfSUYHn28W4Om8VLEoAILgivLMYKkfFPovrOX/C0EaQNUjgfyY/PENcjXdAj8c/CTLVmi+DXqw8I3RRhMZWF1NElatk6m8xTfLDmp0=
   file: build/cloudwatchlogs-with-dlq.zip
   on:
     tags: true

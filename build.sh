@@ -1,5 +1,4 @@
 #!/bin/bash
-
 SUMO_AWS_LAMBDA_VERSION="$1"
 
 if [ -z "$SUMO_AWS_LAMBDA_VERSION" ]; then
